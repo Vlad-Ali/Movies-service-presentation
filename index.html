@@ -1,0 +1,126 @@
+<!doctype html>
+<html lang="ru">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>FilmNavigator — презентация проекта</title>
+
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<div class="bg-grid"></div>
+
+<header class="site-header">
+    <div class="brand">
+        <div class="logo">Film<span>Navigator</span></div>
+        <div class="tag">Каталог фильмов</div>
+    </div>
+    <nav class="top-actions">
+        <button class="btn ghost" id="previewBtn">Preview glow</button>
+        <a class="btn cta" href="#api">API</a>
+    </nav>
+</header>
+
+<main class="container">
+    <section class="hero neon-plate">
+        <h1 class="neon-title">FilmNavigator</h1>
+        <p class="lead">Интеллектуальный каталог фильмов — находи, сохраняй, обсуждай. Быстрое резюме отзывов и персональные списки.</p>
+        <div class="hero-stats">
+            <div><span class="stat">🔎</span><small>Поиск по вкусу</small></div>
+            <div><span class="stat">⭐</span><small>Избранное / Хочу посмотреть</small></div>
+            <div><span class="stat">💬</span><small>Отзывы + сводка</small></div>
+        </div>
+    </section>
+
+    <section class="content">
+        <article class="card">
+            <h2>Описание идеи</h2>
+            <p>
+                FilmNavigator решает проблему «что посмотреть?» и недостатка компактной, удобной и персональной
+                витрины фильмов с понятной системой списков и отзывов. Пользователь получает:
+            </p>
+            <ul>
+                <li>Рекомендации и фильтры по жанру/году/рейтингам</li>
+                <li>Возможность составлять списки (favorite / watchlist)</li>
+                <li>Чтение и написание отзывов + автоматическая сводка по всем отзывам</li>
+            </ul>
+        </article>
+
+        <article class="card">
+            <h2>Пользовательские сценарии</h2>
+            <ol>
+                <li><strong>Найти фильм:</strong> пользователь заходит → фильтрует каталог → открывает страницу фильма → читает описание и отзывы.</li>
+                <li><strong>Собрать список:</strong> добавляет фильм в «Хочу посмотреть» или в «Избранное» через кнопку на карточке.</li>
+                <li><strong>Оставить отзыв:</strong> пишет отзыв → система агрегирует и показывает краткое содержание всех отзывов.</li>
+            </ol>
+        </article>
+
+        <article class="card">
+            <h2>Дизайн — макеты</h2>
+            <p class="muted">Ниже — три скриншота интерфейсов</p>
+            <div class="screens">
+                <figure><img src="main.png" alt="Главная — каталог"><figcaption>Главная — каталог</figcaption></figure>
+                <figure><img src="favorite.png" alt="Избранное / списки"><figcaption>Избранное / списки</figcaption></figure>
+                <figure><img src="film.png" alt="Страница фильма"><figcaption>Страница фильма</figcaption></figure>
+            </div>
+        </article>
+
+        <article id="api" class="card">
+            <h2>REST API (эндпоинты)</h2>
+            <p class="muted">Ниже — таблица доступных маршрутов (сервер обрабатывает указанные пути).</p>
+
+            <div class="api-table-wrap">
+                <table class="api-table" aria-label="API endpoints">
+                    <thead>
+                    <tr><th>Метод</th><th>Путь</th><th>Описание</th></tr>
+                    </thead>
+                    <tbody>
+                    <tr><td>POST</td><td>/api/user/register</td><td>Регистрация пользователя</td></tr>
+                    <tr><td>POST</td><td>/api/user/auth</td><td>Аутентификация</td></tr>
+                    <tr><td>GET</td><td>/api/user</td><td>Получить данные текущего пользователя</td></tr>
+
+                    <tr><td>GET</td><td>/api/movie</td><td>Получение фильма</td></tr>
+                    <tr><td>GET</td><td>/api/movie/all</td><td>Список всех фильмов</td></tr>
+
+                    <tr><td>PATCH</td><td>/api/user/movie/rating</td><td>Сохранить/обновить рейтинг пользователя для фильма</td></tr>
+                    <tr><td>PATCH</td><td>/api/user/movie/list</td><td>Сохранить тип списка (favorite/watchlist)</td></tr>
+                    <tr><td>GET</td><td>/api/user/movie</td><td>Получить статус/рейтинг фильма для текущего пользователя</td></tr>
+                    <tr><td>GET</td><td>/api/user/movie/all</td><td>Получить все фильмы из списков пользователя</td></tr>
+
+                    <tr><td>PUT</td><td>/api/user/movie/review</td><td>Добавить/обновить отзыв</td></tr>
+                    <tr><td>DELETE</td><td>/api/user/movie/review</td><td>Удалить отзыв</td></tr>
+                    <tr><td>GET</td><td>/api/user/movie/review</td><td>Получить отзыв текущего пользователя</td></tr>
+                    <tr><td>GET</td><td>/api/movie/review/all</td><td>Получить все отзывы по фильму</td></tr>
+                    <tr><td>GET</td><td>/api/movie/summary</td><td>Краткое содержание (summary) всех отзывов по фильму</td></tr>
+                    </tbody>
+                </table>
+            </div>
+        </article>
+
+        <article class="card">
+            <h2>Дополнительно — идеи и расширения</h2>
+            <ul>
+                <li>Персональные рекомендации на основе истории просмотров и оценок</li>
+                <li>Импорт/экспорт списков, шаринг с друзьями</li>
+                <li>ML-модуль для генерации ещё более точной сводки отзывов</li>
+            </ul>
+        </article>
+    </section>
+</main>
+
+<footer class="site-footer">
+    <div>© 2025 FilmNavigator — проект</div>
+    <div class="foot-links">
+        <a href="#api">API</a>
+    </div>
+</footer>
+
+<div class="img-viewer" id="imgViewer">
+    <img id="viewerImg" src="" alt="">
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>
